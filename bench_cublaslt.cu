@@ -193,7 +193,7 @@ int main()
     //    (ランダム or 固定; ここではランダム)
     std::random_device rd;
     std::mt19937 gen(rd());
-    std::uniform_int_distribution<int> dist(256, 2048); // [256..2048]
+    std::uniform_int_distribution<int> dist(32, 1024); // [256..2048]
     const int numCases = 5; // 5パターン計測
 
     // 3) ワークスペースの候補
@@ -202,9 +202,9 @@ int main()
 
     // 4) ベンチマーク
     for (int c = 0; c < numCases; ++c) {
-        int M = dist(gen)*8;
-        int K = dist(gen)*8;
-        int N = dist(gen)*8;
+        int M = dist(gen)*32;
+        int K = dist(gen)*32;
+        int N = dist(gen)*32;
 
         // GPUメモリに A(M*K), B(K*N), C(M*N) 確保
         float *dA=nullptr, *dB=nullptr, *dC=nullptr;
